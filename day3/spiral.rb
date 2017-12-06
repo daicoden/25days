@@ -25,6 +25,17 @@ def contained?(number, xDist)
   return min < number && number <= max
 end
 
-puts("Bottom Right: #{botRight(input.to_i)}")
-puts("Side Length: #{sideLength(input.to_i)}")
-puts("Contained in 3: #{contained?(input.to_i, 3)}")
+foundXDist = 0
+
+while not contained?(input.to_i, foundXDist)
+  foundXDist += 1
+end
+
+length = sideLength(foundXDist)
+perimiterIndex = botRight(foundXDist) - input.to_i
+perimiterIndex = perimiterIndex % (length - 1)
+
+mid = (length - 1)/2
+yDist = (mid - perimiterIndex).abs
+
+puts(foundXDist + yDist)
